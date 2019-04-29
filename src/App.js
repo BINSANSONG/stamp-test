@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Stamp from "./Stamp";
+import React, { Component } from "react";
+import card from "./card.jpg";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+export default class App extends Component {
+  state = {
+    stampsPosition: [],
+    stampOnOff: false
+  };
+  saveStampPosition = e => {
+    this.setState({
+      stampsPosition: [
+        ...this.state.stampsPosition,
+        { top: e.pageY, left: e.pageX }
+      ]
+    });
+  };
+  stampOnOff = () => {
+    this.setState({ stampOnOff: !this.state.stampOnOff });
+  };
+  render() {
+    return (
+      <div>
+        <button onClick={this.stampOnOff}>
+          {this.state.stampOnOff ? "스탬프 모드 끄기" : "스탬프 모드 켜기"}
+        </button>
+        <div
+          onClick={this.state.stampOnOff ? this.saveStampPosition : undefined}
+          style={{ position: "relative" }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          <img
+            src={card}
+            alt="카드"
+            style={{
+              width: "100%",
+              height: "auto"
+            }}
+          />
+          {this.state.stampsPosition.map(position => (
+            <Stamp
+              top={position.top}
+              left={position.left}
+              onOff={this.state.stampOnOff}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;
