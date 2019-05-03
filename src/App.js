@@ -1,49 +1,15 @@
-import Stamp from "./Stamp";
+import { Route } from "react-router-dom";
 import React, { Component } from "react";
-import card from "./card.jpg";
-
+import StampApp from "./StampApp";
+import TemplateHTMLComponent from "./TemplateHTMLComponent";
 export default class App extends Component {
-  state = {
-    stampsPosition: [],
-    stampOnOff: false
-  };
-  saveStampPosition = e => {
-    this.setState({
-      stampsPosition: [
-        ...this.state.stampsPosition,
-        { top: e.pageY, left: e.pageX }
-      ]
-    });
-  };
-  stampOnOff = () => {
-    this.setState({ stampOnOff: !this.state.stampOnOff });
-  };
+  initialStamp = [0, 1, 2, 3, 4, 5, 6, 7];
+
   render() {
     return (
       <div>
-        <button onClick={this.stampOnOff}>
-          {this.state.stampOnOff ? "스탬프 모드 끄기" : "스탬프 모드 켜기"}
-        </button>
-        <div
-          onClick={this.state.stampOnOff ? this.saveStampPosition : undefined}
-          style={{ position: "relative" }}
-        >
-          <img
-            src={card}
-            alt="카드"
-            style={{
-              width: "100%",
-              height: "auto"
-            }}
-          />
-          {this.state.stampsPosition.map(position => (
-            <Stamp
-              top={position.top}
-              left={position.left}
-              onOff={this.state.stampOnOff}
-            />
-          ))}
-        </div>
+        <Route path="/stamp" component={StampApp} />
+        <Route path="/publ" component={TemplateHTMLComponent} />
       </div>
     );
   }

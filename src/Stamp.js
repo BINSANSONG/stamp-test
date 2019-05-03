@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import stamp from "./stamp.png";
+import stamp2 from "./stamp2.png";
 
 class Stamp extends Component {
   render() {
-    const { top, left, onOff } = this.props;
+    const { top, left, parentWidth, parentHeight, onOff, kind } = this.props;
     return (
       <img
-        src={stamp}
+        src={kind ? stamp : stamp2}
         draggable="false"
         unselectable="on"
         style={{
           width: "70px",
           height: "70px",
           position: "absolute",
-          top: top - 35 + "px",
-          left: left - 35 + "px",
-          display: onOff ? "" : "none"
+          top: top * parentHeight - 35 + "px",
+          left: left * parentWidth - 35 + "px",
+          display: onOff ? "" : "none",
+          zIndex: 1
         }}
         alt="스탬프"
       />
