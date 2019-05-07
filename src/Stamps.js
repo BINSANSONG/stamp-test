@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import card from "./card.jpg";
-import Stamp from "./Stamp";
+import card from "static/card.jpg";
+import Stamp from "Stamp";
 
 export default class Stamps extends Component {
   state = {

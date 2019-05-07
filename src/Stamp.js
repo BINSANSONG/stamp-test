@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import stamp from "./stamp.png";
-import stamp2 from "./stamp2.png";
+import stamp from "static/stamp.png";
+import stamp2 from "static/stamp2.png";
 
 class Stamp extends Component {
   render() {

@@ -1,4 +1,4 @@
-import Stamps from "./Stamps";
+import Stamps from "Stamps";
 import React, { Component } from "react";
 
 export default class App extends Component {
